@@ -1,12 +1,12 @@
-import React from "react";
+import React, { SVGProps } from "react";
 import styled from "@emotion/styled";
 
-export type IconProps = {
+export interface IconProps extends SVGProps<SVGSVGElement> {
   iconName: string;
   title?: string;
   width?: string | number;
   height?: string | number;
-};
+}
 
 export default function Icon({ iconName, title, ...svgProps }: IconProps) {
   return (
@@ -18,7 +18,7 @@ export default function Icon({ iconName, title, ...svgProps }: IconProps) {
 }
 
 const SVGWrapper = styled("svg")`
-  display: inline-block;
+  display: inline-flex;
   width: ${({ width }) => width ?? "1em"};
   height: ${({ height }) => height ?? "1em"};
   stroke-width: 0;
