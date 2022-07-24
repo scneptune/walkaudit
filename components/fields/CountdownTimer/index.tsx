@@ -13,30 +13,21 @@ import CountdownControls from "@components/fields/CountdownTimer/CountdownContro
 export default function CountdownTimer({
   countdownInMinutes = 5,
   clockId = "countdownTimer-1",
+  onCountdownStart,
+  onCountdownReset,
   onCountdownEnd,
 }: CountdownTimerProps) {
   return (
     <CountdownProvider
       countdownTimeInMinutes={countdownInMinutes}
       clockId={clockId}
+      onCountdownStart={onCountdownStart}
+      onCountdownReset={onCountdownReset}
       onCountdownEnd={onCountdownEnd}
     >
-      <AccessibilityAnnouncement />
       <CircularClock />
       <CountdownControls />
+      <AccessibilityAnnouncement />
     </CountdownProvider>
   );
 }
-
-// const Container = styled("div")`
-//   padding: 1em 0em;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100%;
-//   @media only screen and (min-width: 600px) {
-//     flex-direction: row;
-//     align-items: center;
-//   }
-// `;

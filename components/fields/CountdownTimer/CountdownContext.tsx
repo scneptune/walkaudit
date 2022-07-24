@@ -40,7 +40,7 @@ export function CountdownProvider({
   onCountdownEnd,
   onCountdownReset,
   onCountdownStart,
-  clockId = "circularClockTimeRemaining",
+  clockId,
   children,
 }: CountdownClockProps) {
   const requestRef = useRef() as MutableRefObject<number>;
