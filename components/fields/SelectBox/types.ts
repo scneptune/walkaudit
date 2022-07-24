@@ -2,8 +2,12 @@ import type { AriaListBoxOptions } from "@react-aria/listbox";
 import type { RefObject, HTMLAttributes } from "react";
 import type { ListState } from "react-stately";
 import type { Node } from "@react-types/shared";
+import type { AriaSelectProps } from "@react-types/select";
 
-interface SelectListState extends ListState<unknown> {
+export interface SelectBoxProps extends AriaSelectProps<T> {
+  name: string;
+}
+export interface SelectListState extends ListState<unknown> {
   isOpen: boolean;
   close: () => void;
 }

@@ -26,7 +26,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(props, ref) {
 const ButtonStyle = styled("button")`
   align-items: center;
   appearance: none;
-  background-color: #fff;
+  background-color: ${ColorThemes.BaseSwatches.White.Lighter};
   border-radius: 24px;
   border-style: none;
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
@@ -36,7 +36,7 @@ const ButtonStyle = styled("button")`
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-size: ${FontSizeScale.Heading5};
+  font-size: ${FontSizeScale.Body};
   font-weight: 500;
   height: 48px;
   justify-content: center;

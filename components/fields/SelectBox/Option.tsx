@@ -1,9 +1,14 @@
 import styled from "@emotion/styled";
 import { createContext, useRef, useContext } from "react";
 import { useOption } from "@react-aria/listbox";
-import Icon from "@components/Icon";
+import Icon from "@components/atoms/Icon";
 import type { ReactNode } from "react";
-import type { OptionContextValue, ListItemProps, OptionProps } from "./types";
+import type {
+  OptionContextValue,
+  ListItemProps,
+  OptionProps,
+} from "@components/fields/SelectBox/types";
+import { ColorThemes } from "@components/theming";
 
 const OptionContext = createContext<OptionContextValue>({
   labelProps: {},
@@ -52,9 +57,14 @@ export function OptionDescription({ children }: { children: ReactNode }) {
 
 // Styled Component Markup
 const OptionLiWrapper = styled("li")<ListItemProps>`
-  background: ${({ isFocused }) => (isFocused ? "seagreen" : "")};
+  background: ${({ isFocused }) =>
+    isFocused ? ColorThemes.BrandSwatches.Secondary : ""};
   color: ${({ isFocused, isSelected }) =>
-    isFocused ? "#ffffff" : isSelected ? "seagreen" : "#333"};
+    isFocused
+      ? ColorThemes.BaseSwatches.White.Lighter
+      : isSelected
+      ? ColorThemes.BrandSwatches.Secondary
+      : ColorThemes.BrandSwatches.Tertiary};
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
@@ -72,7 +82,7 @@ const OptionContent = styled("div")`
 `;
 
 const SelectedIcon = styled(Icon)`
-  fill: seagreen;
+  fill: ${ColorThemes.BrandSwatches.Secondary};
 `;
 
 const StyledDescription = styled("div")`

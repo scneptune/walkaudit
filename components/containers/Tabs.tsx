@@ -4,8 +4,9 @@ import { useTab, useTabList, useTabPanel } from "react-aria";
 import { useTabListState } from "@react-stately/tabs";
 import { TabListProps } from "@react-types/tabs";
 import styled from "@emotion/styled";
+import type { TabListState } from "react-stately";
 
-export function Tabs(props: TabListProps<T>) {
+export default function Tabs(props: TabListProps<T>) {
   let state = useTabListState(props);
   let ref: MutableRefObject<T> = React.useRef();
   let { tabListProps } = useTabList(props, state, ref);
@@ -21,7 +22,7 @@ export function Tabs(props: TabListProps<T>) {
   );
 }
 
-export function Tab({ item, state }: { item: any; state: any }) {
+export function Tab({ item, state }: { item: any; state: TabListState<T> }) {
   let { key, rendered } = item;
   let ref: MutableRefObject<T> = React.useRef();
   let { tabProps } = useTab({ key }, state, ref);
@@ -56,6 +57,7 @@ type TabItemWrapperProps = {
 
 const TabListWrapper = styled("ul")`
   list-display-type: none;
+  margin: 0;
   padding-left: 0;
   display: flex;
   border-bottom: 1px solid grey;
@@ -63,6 +65,8 @@ const TabListWrapper = styled("ul")`
 
 const TabItemWrapper = styled("li")<TabItemWrapperProps>`
   padding: 10px;
+  list-style-type: none;
+  cursor: pointer;
   opacity: ${({ isDisabled }) => (isDisabled ? 0.5 : undefined)};
   border-bottom: ${({ isSelected }) =>
     isSelected ? "3px solid #222222" : undefined};

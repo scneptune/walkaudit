@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { RefObject, useRef } from "react";
 
 import styled from "@emotion/styled";
 import {
@@ -9,14 +9,17 @@ import {
   mergeProps,
 } from "react-aria";
 import { useSelectState } from "react-stately";
-import SelectList from "./SelectList";
-import type { SelectFieldButtonProps } from "./types";
-import type { AriaSelectProps } from "@react-types/select";
-import Icon from "@components/Icon";
+import SelectList from "@components/fields/SelectBox/SelectList";
+import type {
+  SelectFieldButtonProps,
+  SelectBoxProps,
+} from "@components/fields/SelectBox/types";
+import Icon from "@components/atoms/Icon";
+import { FontSizeScale, ColorThemes } from "@components/theming";
 
-export default function Select<T extends object>(props: AriaSelectProps<T>) {
+export default function Select(props: SelectBoxProps) {
   const state = useSelectState(props);
-  const ref = useRef(null);
+  const ref = useRef() as RefObject<HTMLButtonElement>;
   const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
     props,
     state,
@@ -32,7 +35,7 @@ export default function Select<T extends object>(props: AriaSelectProps<T>) {
         state={state}
         triggerRef={ref}
         label={props.label}
-        name={props.name}
+        name={props?.name}
       />
       <SelectFieldButton
         {...mergeProps(buttonProps, focusProps)}
@@ -43,7 +46,7 @@ export default function Select<T extends object>(props: AriaSelectProps<T>) {
         <SelectFieldValue {...valueProps}>
           {state.selectedItem
             ? state.selectedItem.rendered
-            : "Select an option"}
+            : props.placeholder ?? "Select an option"}
         </SelectFieldValue>
         <SelectFieldIndicator iconName="unfold_more" />
       </SelectFieldButton>
@@ -57,25 +60,35 @@ const FieldWrapper = styled("div")`
   flex-direction: column;
   position: relative;
   margin-top: 20px;
+  width: 100%;
 `;
 
 const SelectFieldButton = styled("button")<SelectFieldButtonProps>`
   appearance: none;
-  background: ${(props) => (props.isOpen ? "#eee" : "white")};
+  background: ${(props) =>
+    props.isOpen
+      ? ColorThemes.BaseSwatches.White.Base
+      : ColorThemes.BaseSwatches.White.Lighter};
   border: 1px solid;
-  padding: 6px 2px 6px 8px;
+  padding: 1em 0.75em 1em 1em;
   margin-top: 6px;
   outline: none;
-  border-color: ${(props) => (props.isFocusVisible ? "seagreen" : "lightgray")};
+  border-color: ${(props) =>
+    props.isFocusVisible
+      ? ColorThemes.BrandSwatches.Secondary
+      : ColorThemes.BaseSwatches.White.Darker};
   box-shadow: ${(props) =>
     props.isFocusVisible ? "0 0 0 3px rgba(143, 188, 143, 0.5)" : ""};
-  border-radius: 4px;
+  border-radius: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  width: 210px;
+  max-width: 100%;
+  width: auto;
   text-align: left;
-  font-size: 14px;
+  touch-action: manipulation;
+  font-size: ${FontSizeScale.Body};
+
   color: black;
 `;
 
@@ -85,11 +98,11 @@ const SelectFieldValue = styled.span`
 `;
 
 const SelectFieldIndicator = styled(Icon)`
-  width: 18px;
-  height: 18px;
+  width: 40px;
+  height: 40px;
   padding: 6px 2px;
   margin: 0 4px;
-  background: seagreen;
+  background: ${ColorThemes.BrandSwatches.Base};
   border-radius: 4px;
-  color: white;
+  color: ${ColorThemes.BaseSwatches.White.Lighter};
 `;
