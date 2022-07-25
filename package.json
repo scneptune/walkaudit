@@ -7,7 +7,7 @@
     "lint": "next lint",
     "https-proxy": "local-ssl-proxy --key ./localhost-key.pem --cert localhost.pem --source 3001 --target 3000"
   },
-  "prettier": ".pretteierrc",
+  "prettier": "./.prettierrc.json",
   "dependencies": {
     "@emotion/styled": "^11.9.3",
     "@google-cloud/storage": "^6.2.3",
