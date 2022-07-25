@@ -1,3 +1,8 @@
+CREATE EXTENSION postgis WITH VERSION "3.1.4";
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION address_standardizer;
+CREATE EXTENSION address_standardizer_data_us;
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
