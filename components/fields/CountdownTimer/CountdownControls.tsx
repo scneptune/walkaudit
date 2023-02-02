@@ -1,10 +1,12 @@
-import React, { useCallback, useContext } from "react";
-import { CountdownContextProps } from "@components/fields/CountdownTimer/types";
-import CountdownContext from "@components/fields/CountdownTimer/CountdownContext";
-import Icon from "@components/atoms/Icon";
 import styled from "@emotion/styled";
+import React, { useCallback, useContext } from "react";
+
 import Button from "@components/atoms/Button";
+import Icon from "@components/atoms/Icon";
+import CountdownContext from "@components/fields/CountdownTimer/CountdownContext";
 import { FontSizeScale } from "@components/theming";
+
+import type { CountdownContextProps } from "@components/fields/CountdownTimer/types";
 
 export default function CountdownControls(): JSX.Element {
   const { setCountdownStatus, clockId, countdownActive, resetCountdown } =
@@ -17,7 +19,7 @@ export default function CountdownControls(): JSX.Element {
         resetCountdown();
       }
     },
-    [countdownActive]
+    [countdownActive, resetCountdown, setCountdownStatus]
   );
 
   return (

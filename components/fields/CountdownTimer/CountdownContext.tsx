@@ -4,12 +4,8 @@ import React, {
   useEffect,
   useCallback,
   useMemo,
-  useContext,
   createContext,
 } from "react";
-
-import CircularClock from "@components/fields/CountdownTimer/CircularClock";
-import Icon from "@components/atoms/Icon";
 
 import {
   calculatePercentageRemaining,
@@ -21,7 +17,7 @@ import type {
   CountdownClockProps,
   CountdownContextProps,
 } from "@components/fields/CountdownTimer/types";
-import type { SyntheticEvent, MutableRefObject } from "react";
+import type { MutableRefObject } from "react";
 
 const CountdownContext = createContext<CountdownContextProps>({
   percentTilComplete: 0,
@@ -63,6 +59,7 @@ export function CountdownProvider({
    */
   const millisecondsRelativeToCountdownTime = useMemo(
     () => getFutureTime(countdownTimeInMinutes),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [countdownTimeInMinutes, countdownActive]
   );
 
@@ -110,10 +107,10 @@ export function CountdownProvider({
 
     requestRef.current = requestAnimationFrame(countdown);
   }, [
-    setPercentComplete,
-    setTimeRemaining,
     millisecondsRelativeToCountdownTime,
     millisecondsFromCountdownTime,
+    countdownTimeInMinutes,
+    onCountdownEnd,
   ]);
 
   useEffect(() => {
@@ -124,7 +121,7 @@ export function CountdownProvider({
       requestRef.current = requestAnimationFrame(countdown);
     }
     return () => cancelAnimationFrame(requestRef.current);
-  }, [countdownActive]);
+  }, [countdown, countdownActive, onCountdownStart]);
 
   const resetCountdown = () => {
     setPercentComplete(100);

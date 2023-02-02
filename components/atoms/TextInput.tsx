@@ -1,9 +1,11 @@
-import React, { forwardRef } from "react";
 import styled from "@emotion/styled";
-import { ColorThemes, FontSizeScale } from "@components/theming";
+import React, { forwardRef } from "react";
 import { useTextField } from "react-aria";
-import type { ForwardedRef, LegacyRef, RefObject, ReactNode } from "react";
+
+import { ColorThemes, FontSizeScale } from "@components/theming";
+
 import type { AriaTextFieldOptions } from "@react-aria/textfield";
+import type { ForwardedRef, LegacyRef, RefObject, ReactNode } from "react";
 
 type LayoutType = "horizontal" | "vertical";
 
@@ -12,43 +14,41 @@ interface InputComponentProps extends AriaTextFieldOptions<"input"> {
   children?: ReactNode;
 }
 
-const TextInput = forwardRef<ForwardedRef<HTMLInputElement>, InputComponentProps>(
-  function TextInput(props, ref) {
-    const { label, layout = "vertical" } = props;
-    const { labelProps, inputProps, descriptionProps, errorMessageProps } =
-      useTextField(props, ref as RefObject<HTMLInputElement>);
-    return (
-      <FieldWrapper layout={layout}>
-        <Label {...labelProps}>{label}</Label>
-        {props.children ? (
-          <InputChildCombo
-            className={inputProps.disabled ? "disabled" : undefined}
-            ref={ref as LegacyRef<HTMLDivElement>}
-          >
-            <InputUnstyled {...inputProps} />
-            {props.children}
-          </InputChildCombo>
-        ) : (
-          <InputStyled
-            {...inputProps}
-            ref={ref as LegacyRef<HTMLInputElement>}
-          />
-        )}
+const TextInput = forwardRef<
+  ForwardedRef<HTMLInputElement>,
+  InputComponentProps
+>(function TextInput(props, ref) {
+  const { label, layout = "vertical" } = props;
+  const { labelProps, inputProps, descriptionProps, errorMessageProps } =
+    useTextField(props, ref as RefObject<HTMLInputElement>);
+  return (
+    <FieldWrapper layout={layout}>
+      <Label {...labelProps}>{label}</Label>
+      {props.children ? (
+        <InputChildCombo
+          className={inputProps.disabled ? "disabled" : undefined}
+          ref={ref as LegacyRef<HTMLDivElement>}
+        >
+          <InputUnstyled {...inputProps} />
+          {props.children}
+        </InputChildCombo>
+      ) : (
+        <InputStyled {...inputProps} ref={ref as LegacyRef<HTMLInputElement>} />
+      )}
 
-        {props.description && (
-          <InputDescription {...descriptionProps}>
-            {props.description}
-          </InputDescription>
-        )}
-        {props.errorMessage && (
-          <InputErrorMessage {...errorMessageProps}>
-            {props.errorMessage}
-          </InputErrorMessage>
-        )}
-      </FieldWrapper>
-    );
-  }
-);
+      {props.description && (
+        <InputDescription {...descriptionProps}>
+          {props.description}
+        </InputDescription>
+      )}
+      {props.errorMessage && (
+        <InputErrorMessage {...errorMessageProps}>
+          {props.errorMessage}
+        </InputErrorMessage>
+      )}
+    </FieldWrapper>
+  );
+});
 
 const FieldWrapper = styled("div")<{ layout: LayoutType }>`
   display: flex;

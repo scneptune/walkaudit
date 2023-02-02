@@ -1,14 +1,15 @@
+import styled from "@emotion/styled";
 import React, { useState } from "react";
 
-import styled from "@emotion/styled";
+import AccessibilityAnnouncement from "@components/fields/CountdownTimer/AccessibilityAnnouncement";
 import Countdown, {
   CountdownProvider,
 } from "@components/fields/CountdownTimer/CountdownContext";
+import CountdownControls from "@components/fields/CountdownTimer/CountdownControls";
 
 import CircularClock from "./CircularClock";
-import AccessibilityAnnouncement from "@components/fields/CountdownTimer/AccessibilityAnnouncement";
-import { CountdownTimerProps } from "@components/fields/CountdownTimer/types";
-import CountdownControls from "@components/fields/CountdownTimer/CountdownControls";
+
+import type { CountdownTimerProps } from "@components/fields/CountdownTimer/types";
 
 export default function CountdownTimer({
   countdownInMinutes = 5,

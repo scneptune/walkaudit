@@ -1,4 +1,6 @@
+import React from "react";
 import Icon from "@components/Icon";
+
 import styles from "../styles/Home.module.css";
 
 export default function Home() {

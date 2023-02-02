@@ -1,9 +1,10 @@
-import React, { useCallback, useContext } from "react";
 import styled from "@emotion/styled";
+import React, { useCallback, useContext } from "react";
+
+import CountdownContext from "@components/fields/CountdownTimer/CountdownContext";
+import { ColorThemes, FontSizeScale } from "@components/theming";
 
 import type { CountdownContextProps } from "@components/fields/CountdownTimer/types";
-import { ColorThemes, FontSizeScale } from "@components/theming";
-import CountdownContext from "@components/fields/CountdownTimer/CountdownContext";
 
 export default function CircularClock(): JSX.Element {
   const { timeRemaining, clockId, percentTilComplete }: CountdownContextProps =

@@ -1,15 +1,16 @@
-import React, { MutableRefObject } from "react";
-
-import { useTab, useTabList, useTabPanel } from "react-aria";
-import { useTabListState } from "@react-stately/tabs";
-import { TabListProps } from "@react-types/tabs";
 import styled from "@emotion/styled";
+import { useTabListState } from "@react-stately/tabs";
+import React from "react";
+import { useTab, useTabList, useTabPanel } from "react-aria";
+
+import type { TabListProps } from "@react-types/tabs";
+import type { MutableRefObject } from "react";
 import type { TabListState } from "react-stately";
 
 export default function Tabs(props: TabListProps<T>) {
-  let state = useTabListState(props);
-  let ref: MutableRefObject<T> = React.useRef();
-  let { tabListProps } = useTabList(props, state, ref);
+  const state = useTabListState(props);
+  const ref: MutableRefObject<T> = React.useRef();
+  const { tabListProps } = useTabList(props, state, ref);
   return (
     <div>
       <TabListWrapper {...tabListProps} ref={ref}>
@@ -23,11 +24,11 @@ export default function Tabs(props: TabListProps<T>) {
 }
 
 export function Tab({ item, state }: { item: any; state: TabListState<T> }) {
-  let { key, rendered } = item;
-  let ref: MutableRefObject<T> = React.useRef();
-  let { tabProps } = useTab({ key }, state, ref);
-  let isSelected = state.selectedKey === key;
-  let isDisabled = state.disabledKeys.has(key);
+  const { key, rendered } = item;
+  const ref: MutableRefObject<T> = React.useRef();
+  const { tabProps } = useTab({ key }, state, ref);
+  const isSelected = state.selectedKey === key;
+  const isDisabled = state.disabledKeys.has(key);
   return (
     <TabItemWrapper
       {...tabProps}
@@ -41,8 +42,8 @@ export function Tab({ item, state }: { item: any; state: TabListState<T> }) {
 }
 
 export function TabPanel({ state, ...props }) {
-  let ref: MutableRefObject<T> = React.useRef();
-  let { tabPanelProps } = useTabPanel(props, state, ref);
+  const ref: MutableRefObject<T> = React.useRef();
+  const { tabPanelProps } = useTabPanel(props, state, ref);
   return (
     <TabPanelWrapper {...tabPanelProps} ref={ref}>
       {state.selectedItem?.props.children}

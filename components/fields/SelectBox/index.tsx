@@ -1,6 +1,5 @@
-import React, { RefObject, useRef } from "react";
-
 import styled from "@emotion/styled";
+import React, { useRef } from "react";
 import {
   HiddenSelect,
   useButton,
@@ -9,13 +8,16 @@ import {
   mergeProps,
 } from "react-aria";
 import { useSelectState } from "react-stately";
+
+import Icon from "@components/atoms/Icon";
 import SelectList from "@components/fields/SelectBox/SelectList";
+import { FontSizeScale, ColorThemes } from "@components/theming";
+
 import type {
   SelectFieldButtonProps,
   SelectBoxProps,
 } from "@components/fields/SelectBox/types";
-import Icon from "@components/atoms/Icon";
-import { FontSizeScale, ColorThemes } from "@components/theming";
+import type { RefObject } from "react";
 
 export default function Select(props: SelectBoxProps) {
   const state = useSelectState(props);

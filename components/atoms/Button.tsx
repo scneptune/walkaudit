@@ -1,8 +1,11 @@
-import React, { AriaAttributes, forwardRef, LegacyRef, RefObject } from "react";
 import styled from "@emotion/styled";
-import { ColorThemes, FontSizeScale } from "@components/theming";
+import React, { AriaAttributes, forwardRef } from "react";
 import { useButton } from "react-aria";
-import { AriaButtonProps } from "@react-types/button";
+
+import { ColorThemes, FontSizeScale } from "@components/theming";
+
+import type { AriaButtonProps } from "@react-types/button";
+import type { LegacyRef, RefObject } from "react";
 
 type ButtonRef = RefObject<HTMLElement>;
 

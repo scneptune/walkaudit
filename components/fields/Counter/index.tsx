@@ -1,12 +1,13 @@
-import React, { MutableRefObject, useRef } from "react";
 import styled from "@emotion/styled";
-import { useButton, useLocale, useNumberField } from "react-aria";
 import { useNumberFieldState } from "@react-stately/numberfield";
+import React, { MutableRefObject, useRef } from "react";
+import { useButton, useLocale, useNumberField } from "react-aria";
+
+import { ColorThemes, FontSizeScale } from "@components/theming";
 
 import type { CounterProps } from "@components/fields/Counter/types";
-import type { NumberFieldState } from "react-stately";
 import type { RefObject } from "react";
-import { ColorThemes, FontSizeScale } from "@components/theming";
+import type { NumberFieldState } from "react-stately";
 
 export default function Counter(props: CounterProps) {
   const inputRef = useRef() as RefObject<HTMLInputElement>;

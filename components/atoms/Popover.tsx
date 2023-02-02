@@ -1,10 +1,11 @@
-import React, { forwardRef, HTMLAttributes } from "react";
-import { useOverlay, DismissButton, FocusScope } from "react-aria";
 import styled from "@emotion/styled";
+import React, { forwardRef } from "react";
+import { useOverlay, DismissButton, FocusScope } from "react-aria";
+
+import { ColorThemes, FontSizeScale } from "@components/theming";
 
 import type { PopoverProps } from "@react-types/overlays";
-import type { RefObject, ForwardedRef, ReactNode } from "react";
-import { ColorThemes, FontSizeScale } from "@components/theming";
+import type { RefObject, ForwardedRef, ReactNode, HTMLAttributes } from "react";
 
 interface PopoverComponentProps extends PopoverProps {
   popoverRef?: RefObject<HTMLDivElement>;
@@ -26,7 +27,7 @@ const Popover = forwardRef(function Popover(
 
   // Handle events that should cause the popup to close,
   // e.g. blur, clicking outside, or pressing the escape key.
-  let { overlayProps } = useOverlay(
+  const { overlayProps } = useOverlay(
     {
       isOpen,
       onClose,

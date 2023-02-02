@@ -1,15 +1,17 @@
-import { useRef } from "react";
 import styled from "@emotion/styled";
+import React, { useRef } from "react";
 import { useListBox } from "react-aria";
+
 import Popover from "@components/atoms/Popover";
 import Option from "@components/fields/SelectBox/Option";
+
 import type { SelectListProps } from "./types";
 import type { RefObject } from "react";
 
 export default function SelectList(props: SelectListProps) {
   const listBoxRef = useRef() as RefObject<HTMLUListElement>;
   const popOverRef = useRef() as RefObject<HTMLDivElement>;
-  let { state } = props;
+  const { state } = props;
   const { listBoxProps } = useListBox(props, state, listBoxRef);
   return (
     <Popover

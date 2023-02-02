@@ -1,5 +1,7 @@
-import React, { SVGProps } from "react";
 import styled from "@emotion/styled";
+import React from "react";
+
+import type { SVGProps } from "react";
 
 export interface IconProps extends SVGProps<SVGSVGElement> {
   iconName: string;

@@ -1,10 +1,11 @@
+import styled from "@emotion/styled";
 import React, { useContext, useEffect, useState } from "react";
+
 import CountdownContext from "@components/fields/CountdownTimer/CountdownContext";
 import {
   formatTimeRemaining,
   generateAssistiveText,
 } from "@components/fields/CountdownTimer/utils";
-import styled from "@emotion/styled";
 
 export default function AccessibilityAnnouncement() {
   const { timeRemaining, clockId, countdownActive } =
@@ -16,7 +17,12 @@ export default function AccessibilityAnnouncement() {
     if (countdownActive) {
       setAssistiveText(generateAssistiveText(timeRemaining));
     }
-  }, [timeRemaining?.minutes, timeRemaining?.seconds, countdownActive]);
+  }, [
+    timeRemaining.minutes,
+    timeRemaining.seconds,
+    countdownActive,
+    timeRemaining,
+  ]);
 
   const hasAssistiveText = assistiveText !== "";
 

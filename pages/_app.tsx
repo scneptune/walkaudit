@@ -1,9 +1,11 @@
 import Head from "next/head";
 import "../styles/globals.css";
 import React from "react";
-import SymbolDefSvg from "public/symbol-defs.svg";
-import { AppProps } from "next/app";
 import { OverlayProvider } from "react-aria";
+
+import SymbolDefSvg from "public/symbol-defs.svg";
+
+import type { AppProps } from "next/app";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

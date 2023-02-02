@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
-import { createContext, useRef, useContext } from "react";
 import { useOption } from "@react-aria/listbox";
+import React, { createContext, useRef, useContext } from "react";
+
 import Icon from "@components/atoms/Icon";
-import type { ReactNode } from "react";
+import { ColorThemes } from "@components/theming";
+
 import type {
   OptionContextValue,
   ListItemProps,
   OptionProps,
 } from "@components/fields/SelectBox/types";
-import { ColorThemes } from "@components/theming";
+import type { ReactNode } from "react";
 
 const OptionContext = createContext<OptionContextValue>({
   labelProps: {},
@@ -44,12 +46,12 @@ export default function Option({ item, state }: OptionProps): JSX.Element {
 }
 
 export function OptionLabel({ children }: { children: ReactNode }) {
-  let { labelProps } = useContext(OptionContext);
+  const { labelProps } = useContext(OptionContext);
   return <div {...labelProps}>{children}</div>;
 }
 
 export function OptionDescription({ children }: { children: ReactNode }) {
-  let { descriptionProps } = useContext(OptionContext);
+  const { descriptionProps } = useContext(OptionContext);
   return (
     <StyledDescription {...descriptionProps}>{children}</StyledDescription>
   );
